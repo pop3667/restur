@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} logout {% endblock %}
+
+{% block main %}
+    <h1>logout</h1>
+    <p>you can <a href="{% url 'accounts:login' %}">login now</a></p>
+    <style>
+        main{
+            width: 80%;
+            justify-self: center;
+            margin: 100px 60px;
+        }
+    </style>
+
+{% endblock %}

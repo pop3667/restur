@@ -1,0 +1,1148 @@
+{% extends "base.html" %}
+
+{% block title %} index {% endblock %}
+
+{% block main %}
+
+{% load static %}
+<style>
+  .bi-basket-fill{
+    background-color: var(--accent-color);
+    border-radius:50%;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+
+  }
+</style>
+
+<section id="hero" class="hero section light-background">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="hero-content">
+          <div class="row align-items-center">
+
+            <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+              <div class="content">
+                <h1 class="hero-title mb-4">Savor Authentic Mediterranean Cuisine</h1>
+                <p class="hero-subtitle mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Experience the rich flavors of traditional Mediterranean cooking in an elegant atmosphere.</p>
+
+                <div class="hero-actions d-flex flex-wrap gap-3 mb-4">
+                  <a href="#book-a-table" class="btn btn-primary">Book a Table</a>
+                  <a href="#menu" class="btn btn-outline">View Menu</a>
+                </div>
+
+                <div class="hero-info d-flex flex-wrap align-items-center gap-4">
+                  <div class="info-item d-flex align-items-center">
+                    <i class="bi bi-clock me-2"></i>
+                    <div>
+                      <small class="text-muted">Open Daily</small>
+                      <div class="fw-medium">{{about_resturnt.Open_Daily}}</div>
+                    </div>
+                  </div>
+                  <div class="info-item d-flex align-items-center">
+                    <i class="bi bi-geo-alt me-2"></i>
+                    <div>
+                      <small class="text-muted">Location</small>
+                      <div class="fw-medium">{{about_resturnt.Location}}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+              <div class="hero-images">
+                <div class="main-image">
+                  <img src="{{three_foods_in_home.0.image.url}}" alt="Signature Mediterranean Dish" class="img-fluid">
+                </div>
+                <div class="floating-images">
+                  <div class="floating-image floating-image-1">
+                    <img src="{{three_foods_in_home.1.image.url}}" alt="Grilled Seafood" class="img-fluid">
+                  </div>
+                  <div class="floating-image floating-image-2">
+                    <img src="{{three_foods_in_home.2.image.url}}" alt="Mediterranean Dessert" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row align-items-center">
+          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+            <div class="about-image">
+              <img src="{{two_excutive_chefs.0.image.url}}" alt="Executive Chef" class="img-fluid rounded">
+              <div class="experience-badge">
+                <span class="years">{{two_excutive_chefs.0.years_of_work}}</span>
+                <span class="text">Years of Culinary Excellence</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+            <div class="about-content">
+              <div class="section-header">
+                <h2>Meet Our Executive Chef</h2>
+                <p class="subtitle">Crafting memorable dining experiences since {{two_excutive_chefs.0.from_year }}</p>
+              </div>
+
+              <div class="story-text">
+                {{two_excutive_chefs.0.description}}
+              </div>
+
+              <div class="chef-highlights">
+                <div class="row">
+                  {% for award in two_excutive_chefs.0.awards.all %}
+                  <div class="col-6">
+                    <div class="highlight-item">
+                      <i class="bi bi-{{award.icon}}"></i>
+                      <span>{{award.title}} Award</span>
+                    </div>
+                  
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="chef-quote">
+                <blockquote>
+                  "{{two_excutive_chefs.0.chef_quote}}"
+                </blockquote>
+                <cite>- Chef {{two_excutive_chefs.0.name}}</cite>
+              </div>
+
+              <div class="cta-buttons">
+                <a href="#menu" class="btn btn-primary">View Menu</a>
+                <a href="#book-a-table" class="btn btn-outline">Book a Table</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="restaurant-gallery" data-aos="fade-up" data-aos-delay="400">
+          <div class="row g-4">
+            {% for feature in restur_featuers %}
+            <div class="col-lg-4 col-md-6">
+              <div class="gallery-item">
+                <img src="{{feature.image.url}}" alt="Restaurant Interior" class="img-fluid rounded">
+                <div class="gallery-caption">
+                  <h4>{{feature.title}}</h4>
+                  <p>{{feature.description}}</p>
+                </div>
+              </div>
+            </div>
+            <!-- End Gallery Item -->
+
+            {% endfor %}
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Menu Section -->
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Testimonials</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="testimonial-grid">
+          {% for item in about_resturnt.Testimonials  %}
+          <div class="testimonial-item {{item.fetured}}" data-aos="zoom-in" data-aos-delay="100">
+            <div class="testimonial-card">
+              <div class="testimonial-header">
+                <div class="testimonial-image">
+                  <img src="{% static item.image %}" class="img-fluid" alt="Testimonial 1">
+                </div>
+                <div class="testimonial-meta">
+                  <h3>{{item.name}}</h3>
+                  <h4>{{item.work}}</h4>
+                  <div class="company-logo">
+                    <i class="bi bi-{{item.icon}}"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-body">
+                <i class="bi bi-chat-quote-fill quote-icon"></i>
+                <p>{{item.text}}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+    </section><!-- /Testimonials Section -->
+
+    <!-- Chefs Section -->
+    <section id="chefs" class="chefs section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Chefs</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="main-chef-section" data-aos="fade-up" data-aos-delay="200">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <div class="chef-content">
+                <div class="chef-badge">
+                  <i class="bi bi-award"></i>
+                  <span>Executive Chef</span>
+                </div>
+                <h2>{{two_excutive_chefs.1.name}}</h2>
+                <div class="experience-years">
+                  <span class="number">{{two_excutive_chefs.1.years_of_work}}</span>
+                  <span class="text">Years of Excellence</span>
+                </div>
+                <p>{{two_excutive_chefs.1.description}}</p>
+                <div class="achievements">
+                  {% for award in two_excutive_chefs.1.awards.all %}
+                  <div class="achievement-item">
+                    <i class="bi bi-{{award.icon}}"></i>
+                    <span>{{award.title}}</span>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="chef-image-container" data-aos="zoom-in" data-aos-delay="300">
+                <div class="image-frame">
+                  <img src="{{two_excutive_chefs.1.image.url}}" class="img-fluid" alt="Executive Chef">
+                  <div class="signature-overlay">
+                    <img src="{{two_excutive_chefs.1.signature.url}}" alt="Chef Signature">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-grid" data-aos="fade-up" data-aos-delay="400">
+          <div class="row g-4">
+            {% for chef in chefs %}
+            <div class="col-lg-3 col-md-6">
+              <div class="team-member" data-aos="flip-left" data-aos-delay="200">
+                <div class="member-photo">
+                  <img src="{{chef.image.url}}" class="img-fluid" alt="Team Member">
+                  <div class="overlay">
+                    <div class="social-icons">
+                      {% for link in chef.links.all %}
+                      <a href="{{link.link_it_self}}"><i class="bi bi-{{link.icon}}"></i></a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="member-info">
+                  <h4>{{chef.name}}</h4>
+                  <span class="position">{{chef.work}}</span>
+                  <p>{{chef.description}}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+    </section><!-- /Chefs Section -->
+
+    <!-- Book A Table Section -->
+    <section id="book-a-table" class="book-a-table section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-0">
+          <div class="col-lg-6 reservation-form-col" data-aos="fade-right" data-aos-delay="200">
+            <div class="reservation-form-container">
+              <div class="form-header content">
+                <span class="subtitle">Make a Reservation</span>
+                <h3>Reserve Your Table Today</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eget eros vitae magna eleifend lacinia a eget nisl.</p>
+              </div>
+
+              <form  method="post" role="form" >
+                {% csrf_token %}
+                <input type="hidden" name="task" value="Reserve Your Table Today">
+                <div class="row g-3">
+                  <div class="col-12 form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="full-name" class="form-control" placeholder="Your Name" required="">
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="text" id="phone" class="form-control" name="phone-number" placeholder="Your Phone" required="">
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" name="email" placeholder="Your Email" required="">
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="people">Number of People</label>
+                    <select name="number-of-people" id="people" class="form-select" required="">
+                      <option value="">Select guests</option>
+                      <option value="1">1 Person</option>
+                      <option value="2">2 People</option>
+                      <option value="3">3 People</option>
+                      <option value="4">4 People</option>
+                      <option value="5">5 People</option>
+                      <option value="6">6+ People</option>
+                    </select>
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="date">Reservation Date</label>
+                    <input type="date" id="date" name="date" class="form-control" required="">
+                  </div>
+                  <div class="col-12 form-group">
+                    <label for="time">Reservation Time</label>
+                    <input type="time" id="time" class="form-control" name="time" required="">
+                  </div>
+
+                  <div class="col-12 form-group">
+                    <label for="message">Special Requests</label>
+                    <textarea id="message" class="form-control" name="special-request" rows="2" placeholder="Allergies, special occasions, seating preferences"></textarea>
+                  </div>
+                </div>
+
+                <div class="my-3">
+                </div>
+
+                <div class="text-center">
+                  <button type="submit" class="btn-book-table">Confirm Reservation</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-6 info-col" data-aos="fade-left" data-aos-delay="300">
+            <div class="restaurant-info">
+              <div class="info-image">
+                <img src="{% static about_resturnt.Restaurant_interior_img %}" alt="Restaurant interior" class="img-fluid">
+              </div>
+
+              <div class="info-content content">
+                <div class="restaurant-contact">
+                  <h4>Restaurant Information</h4>
+
+                  <div class="info-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box">
+                      <i class="bi bi-clock"></i>
+                    </div>
+                    <div class="info-text">
+                      <h5>Opening Hours</h5>
+                      <p>{{ about_resturnt.Opening_Hours | safe}}</p>
+                    </div>
+                  </div>
+
+                  <div class="info-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box">
+                      <i class="bi bi-geo-alt"></i>
+                    </div>
+                    <div class="info-text">
+                      <h5>Our Location</h5>
+                      <p>{{ about_resturnt.Location}}</p>
+                    </div>
+                  </div>
+
+                  <div class="info-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-box">
+                      <i class="bi bi-telephone"></i>
+                    </div>
+                    <div class="info-text">
+                      <h5>Reservations</h5>
+                      <p>{{ about_resturnt.Reservations | safe}}</p>
+                    </div>
+                  </div>
+
+                  <div class="info-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="icon-box">
+                      <i class="bi bi-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                      <h5>Email Us</h5>
+                      <p>{{  about_resturnt.Email_Us}}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reservation-cta" data-aos="fade-up" data-aos-delay="500">
+                  <h5>Prefer to call?</h5>
+                  <a href="tel:+{{ about_resturnt.Call_for_Reservations}}" class="phone-button">
+                    <i class="bi bi-telephone-fill"></i>
+                    Call for Reservations
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Book A Table Section -->
+
+    <!-- Location Section -->
+    <section id="location" class="location section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-5">
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+            <div class="location-content">
+              <div class="content-header">
+                <h2>Visit Our Establishment</h2>
+                <p class="subtitle">Located in the heart of Manhattan's culinary district</p>
+              </div>
+
+              <div class="map-wrapper">
+                <iframe src="{{ about_resturnt.map }}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="map-overlay">
+                  <div class="location-badge">
+                    <i class="bi bi-geo-alt"></i>
+                    <span>We're Here</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="transportation-info" data-aos="fade-up" data-aos-delay="300">
+                <h4>Transportation &amp; Parking</h4>
+                <div class="transport-grid">
+                  {% for item in about_resturnt.trasport_items %}
+                  <div class="transport-item">
+                    <i class="bi bi-{{item.icon}}"></i>
+                    <div class="details">
+                      <strong>{{item.name}}</strong>
+                      <p>{{item.description}}</p>
+                    </div>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="250">
+            <div class="contact-sidebar">
+              <div class="contact-card">
+                <div class="card-icon">
+                  <i class="bi bi-building"></i>
+                </div>
+                <h3>Address</h3>
+                <p>{{ about_resturnt.Address |safe}}</p>
+              </div>
+
+              <div class="contact-card" data-aos="fade-up" data-aos-delay="350">
+                <div class="card-icon">
+                  <i class="bi bi-telephone-fill"></i>
+                </div>
+                <h3>Reservations</h3>
+                <p class="phone">{{ about_resturnt.Reservations  |safe}}</p>
+                <p class="note">{{ about_resturnt.note_about_reservations}}</p>
+              </div>
+
+              <div class="contact-card" data-aos="fade-up" data-aos-delay="450">
+                <div class="card-icon">
+                  <i class="bi bi-clock-fill"></i>
+                </div>
+                <h3>Operating Hours</h3>
+                <div class="hours-list">
+                  {% for item in about_resturnt.Operating_Hours_clearly %}
+                  <div class="hour-item {% if item.time == 'Closed' %} closed {% endif %} ">
+                    <span class="day">{{item.day}}</span>
+                    <span class="time">{{item.time}}</span>
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="action-buttons" data-aos="fade-up" data-aos-delay="550">
+                <a href="#book-a-table" class="btn-primary">Book a Table</a>
+                <a href="#" class="btn-secondary">Get Directions</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Location Section -->
+
+    <!-- Events Section -->
+    <section id="events" class="events section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row align-items-center mb-5">
+          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="150">
+            <div class="event-hero-content">
+              <h2>Exceptional Events &amp; Private Dining</h2>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
+              <div class="event-stats">
+                <div class="stat-item">
+                  <span class="stat-number">{{about_resturnt.Events_Hosted}}</span>
+                  <span class="stat-label">Events Hosted</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-number">{{about_resturnt.Max_Capacity}}</span>
+                  <span class="stat-label">Max Capacity</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+            <div class="event-hero-image"> 
+              <img src="{% static about_resturnt.Event_Space_img %}" alt="Event Space" class="img-fluid">
+              <div class="floating-card" data-aos="zoom-in" data-aos-delay="300">
+                <i class="bi bi-calendar-check"></i>
+                <span>Book Your Event Today</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-packages" data-aos="fade-up" data-aos-delay="200">
+          <div class="section-header text-center mb-5">
+            <h3>Choose Your Perfect Package</h3>
+            <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam</p>
+          </div>
+
+          <div class="row g-4">
+            {% for p in packages %}
+
+
+            <div class="col-lg-4 col-md-6" data-aos="flip-up" data-aos-delay="250">
+              {% if p.most_popular %}
+                <div class="package-card featured">
+                <div class="popular-badge">Most Popular</div>
+              {% endif %}
+              <div class="package-card premium">
+                <div class="package-header">
+                  <div class="package-icon">
+                    <i class="bi bi-gem"></i>
+                  </div>
+                  <h4>{{p.category}} Package</h4>
+                  <div class="package-price">
+                    <span class="price">${{p.price}}</span>
+                    <span class="per">per {{p.per}}</span>
+                  </div>
+                </div>
+                <div class="package-features">
+                  <ul>
+                    {% for feture in p.fetures %}
+                    <li><i class="bi bi-check-circle"></i> {{feture}}</li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                <div class="package-capacity">{{p.capacity_from}}-{{p.capacity_to}} guests</div>
+                <div class="package-capacity buy-package " style="margin-top:40px;background-color:var(--accent-color);color:white"  id="{{p.id}}" > Buy it </div>
+                {% if  p.most_popular %}
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="event-gallery-grid" data-aos="fade-up" data-aos-delay="200">
+          <div class="row g-3">
+            {% for item in events %}
+
+            <div class="col-lg-3 col-md-6">
+              <div class="gallery-item" data-aos="zoom-out" data-aos-delay="250">
+                <img src="{{item.image.url}}" alt="Corporate Event" class="img-fluid">
+                <div class="gallery-overlay">
+                  <span class="gallery-label">{{item.name}}</span>
+                </div>
+              </div>
+
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="booking-section" data-aos="fade-up" data-aos-delay="200">
+          <div class="row">
+            <div class="col-lg-6" data-aos="slide-right" data-aos-delay="250">
+              <div class="booking-info">
+                <h3>Plan Your Next Event</h3>
+                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+
+                <div class="contact-methods">
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="bi bi-telephone"></i>
+                    </div>
+                    <div class="contact-details">
+                      <span class="contact-label">Call Us</span>
+                      <span class="contact-value">{{about_resturnt.Call_Us_Plan_Your_Next_Event}}</span>
+                    </div>
+                  </div>
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="bi bi-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                      <span class="contact-label">Email</span>
+                      <span class="contact-value">{{about_resturnt.Email_Plan_Your_Next_Event}}</span>
+                    </div>
+                  </div>
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="bi bi-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                      <span class="contact-label">Planning Hours</span>
+                      <span class="contact-value">{{about_resturnt.Planning_Hours_Your_Next_Event}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6" data-aos="slide-left" data-aos-delay="300">
+              <div class="quick-booking-form">
+                <form  method="post" >
+                  <h4>Quick Event Inquiry</h4>
+                  {% csrf_token %}
+                  <input type="hidden" name="task" value="Plan Your Next Event" >
+                  <div class="row">
+                    <div class="col-md-6">
+                      <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                    </div>
+                    <div class="col-md-6">
+                      <input type="email" name="email" class="form-control" placeholder="Your Email" required="">
+                    </div>
+                    <div class="col-md-6">
+                      <input type="tel" name="phone" class="form-control" placeholder="Phone Number" required="">
+                    </div>
+                    <div class="col-md-6">
+                      <input type="date" name="date" class="form-control" required="">
+                    </div>
+                    <div class="col-md-6">
+                      <select name="guest_count" class="form-select" required="">
+                        <option value="">Guest Count</option>
+                        <option value="15-30">15-30 guests</option>
+                        <option value="31-60">31-60 guests</option>
+                        <option value="61-100">61-100 guests</option>
+                        <option value="100+">100+ guests</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <select name="event_type" class="form-select" required="">
+                        <option value="">Event Type</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="corporate">Corporate Event</option>
+                        <option value="birthday">Birthday Party</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                    <div class="col-12">
+                      <textarea name="message" rows="5" class="form-control" placeholder="Tell us about your event..."></textarea>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn-submit">Send Inquiry</button>
+
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section ><!-- /Events Section -->
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Gallery</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+          <ul class="gallery-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-food">Food</li>
+            <li data-filter=".filter-interior">Interior</li>
+            <li data-filter=".filter-events">Events</li>
+            <li data-filter=".filter-staff">Staff</li>
+          </ul><!-- End Gallery Filters -->
+
+          <div class="row g-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+            {% for item in gallery_items %}
+            <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-{{item.category}}">
+              <div class="gallery-wrap">
+                <img src="{{item.image.url}}" class="img-fluid" alt="{{item.description}}" loading="lazy">
+                <div class="gallery-info">
+                  <h4>{{item.name}}</h4>
+                  <p>{{item.description}}</p>
+                  <div class="gallery-links">
+                    <a href="{{item.image.url}}" class="glightbox" title="{{item.name}}"><i class="bi bi-zoom-in"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Gallery Item -->
+            {% endfor %}
+            </div><!-- End Gallery Item -->
+          </div><!-- End Gallery Container -->
+        </div><!-- End Isotope Layout -->
+
+      </div>
+
+    </section><!-- /Gallery Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="contact-info">
+              <div class="contact-card">
+                <h3>Contact Information</h3>
+                <p>Feel free to reach out with any questions about the book, speaking engagements, or media inquiries.</p>
+
+                <div class="contact-details">
+                  <div class="contact-item">
+                    <i class="bi bi-envelope"></i>
+                    <div>
+                      <h4>Email:</h4>
+                      <p>{{ about_resturnt.Email_contact }}</p>
+                    </div>
+                  </div>
+
+                  <div class="contact-item">
+                    <i class="bi bi-telephone"></i>
+                    <div>
+                      <h4>Phone:</h4>
+                      <p>{{about_resturnt.phone}}</p>
+                    </div>
+                  </div>
+
+                  <div class="contact-item">
+                    <i class="bi bi-geo-alt"></i>
+                    <div>
+                      <h4>Address:</h4>
+                      <p>{{about_resturnt.Address |safe}}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="social-links">
+                  {% for socila_link in about_resturnt.social_links %}
+                  <a href="{{socila_link.link}}"><i class="bi bi-{{socila_link.icon}}"></i></a>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="contact-form-wrapper">
+              <form  method="post" >
+                {% csrf_token %}
+                <input type="hidden" name="task" value="contact" id="">
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="John Doe" required="">
+                  </div>
+                  <div class="col-md-6 form-group mt-3 mt-md-0">
+                    <label for="email">Your Email</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="john@example.com" required="">
+                  </div>
+                </div>
+                <div class="form-group mt-3">
+                  <label for="subject">Subject</label>
+                  <input type="text" class="form-control" name="subject" id="subject" placeholder="I loved your book!" required="">
+                </div>
+                <div class="form-group mt-3">
+                  <label for="message">Message</label>
+                  <textarea class="form-control" name="message" rows="4" placeholder="Your message here..." required=""></textarea>
+                </div>
+
+                <div class="my-3">
+                </div>
+
+                <div class="text-center">
+                  <button type="submit" id="send_message_contact_section">Send Message</button>
+                  <style>
+                    #send_message_contact_section{
+                          background-color: var(--accent-color);
+                          color: var(--contrast-color);
+                          border: none;
+                          padding: 12px 30px;
+                          border-radius: 50px;
+                          font-weight: 500;
+                          font-size: 16px;
+                          transition: all 0.3s 
+                      ease;
+                          cursor: pointer
+                    }
+                  </style>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- /Contact Section -->
+        <section id="menu" class="menu section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Menu</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="menu-filters">
+              <ul class="nav nav-pills justify-content-center" id="menuTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="menu-starters-tab" data-bs-toggle="pill" data-bs-target="#menu-starters" type="button" role="tab">
+                    <i class="bi bi-egg-fried me-2"></i>Starters
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="menu-mains-tab" data-bs-toggle="pill" data-bs-target="#menu-mains" type="button" role="tab">
+                    <i class="bi bi-cup-hot me-2"></i>Main Courses
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="menu-desserts-tab" data-bs-toggle="pill" data-bs-target="#menu-desserts" type="button" role="tab">
+                    <i class="bi bi-cake2 me-2"></i>Desserts
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="menu-drinks-tab" data-bs-toggle="pill" data-bs-target="#menu-drinks" type="button" role="tab">
+                    <i class="bi bi-cup me-2"></i>Beverages
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5"  style="margin-bottom: 20px ;">
+          <div class="col-12 text-center" data-aos="fade-up" data-aos-delay="300">
+            <a href="{% url 'pages:download_PDF_file' %}" class="btn btn-download">
+              <i class="bi bi-download me-2"></i>Download Full Menu (PDF)
+            </a>
+          </div>
+        </div>
+
+        <div class="tab-content" id="menuTabContent">
+          <!-- Starters Tab -->
+          <div class="tab-pane fade show active" id="menu-starters" role="tabpanel">
+            <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+              {% for food in food_starters %}
+              <div class="col-lg-6">
+                <div class="menu-item">
+                  <div class="menu-item-image">
+                    <img src="{{food.image.url}}" class="img-fluid" alt="Starter">
+                    {% if food.special_badge !=  None %}
+                    <div class="special-badge">{{food.special_badge}}</div>
+                    {% endif %}
+                  </div>
+                  <div class="menu-item-content">
+                    <div class="menu-item-header">
+                      <h4>{{food.title}}</h4>
+                      <div class="dietary-tags">
+                        <span class="tag {{food.tag}}"><i class="bi bi-fire"></i></span>
+                      </div>
+                    </div>
+                    <p>{{food.description}}</p>
+                    <div class="menu-item-footer" style="display: flex;justify-content: space-between;">
+                      <div>
+                        <span style="display: inline-block;" class="price">${{food.price_after_discount}}</span>
+                      </div>
+                      <div class="basket-icon">
+                        <span class="bi bi-basket-fill " id="{{food.id}}" ></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            {% endfor %}
+
+          </div>
+          </div>
+          <!-- Main Courses Tab -->
+          <div class="tab-pane fade" id="menu-mains" role="tabpanel">
+            <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+              {% for food in food_main_courses %}
+              <div class="col-lg-6">
+                <div class="menu-item">
+                  <div class="menu-item-image">
+                    <img src="{{food.image.url}}" class="img-fluid" alt="Main Course">
+                    {% if food.special_badge !=  None %}
+                    <div class="special-badge">{{food.special_badge}}</div>
+                    {% endif %}
+                  </div>
+                  <div class="menu-item-content">
+                    <div class="menu-item-header">
+                      <h4>{{ food.title }}</h4>
+                      <div class="dietary-tags">
+                        <span class="tag {{food.tag}}"><i class="bi bi-star-fill"></i></span>
+                      </div>
+                    </div>
+                    <p>{{food.description}}</p>
+                    <div class="menu-item-footer" style="display: flex;justify-content: space-between;">
+                      <div>
+                        <span style="display: inline-block;" class="price">${{food.price_after_discount}}</span>
+                      </div>
+                      <div class="basket-icon">
+                        <span class="bi bi-basket-fill " id="{{food.id}}" ></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              {% endfor %}
+            </div>
+          <!-- Desserts Tab -->
+          <div class="tab-pane fade" id="menu-desserts" role="tabpanel">
+            <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+              {% for food in food_desserts %}
+              <div class="col-lg-6">
+                <div class="menu-item">
+                  <div class="menu-item-image">
+                    <img src="{{food.image.url}}" class="img-fluid" alt="Dessert">
+                    {% if food.special_badge !=  None %}
+                    <div class="special-badge">{{food.special_badge}}</div>
+                    {% endif %}
+                  </div>
+                  <div class="menu-item-content">
+                    <div class="menu-item-header">
+                      <h4>{{food.title}}</h4>
+                      <div class="dietary-tags">
+                        <span class="tag {{food.tag}}"><i class="bi bi-leaf"></i></span>
+                      </div>
+                    </div>
+                    <p>{{food.description}}</p>
+                    <div class="menu-item-footer" style="display: flex;justify-content: space-between;">
+                      <div>
+                        <span style="display: inline-block;" class="price">${{food.price_after_discount}}</span>
+                      </div>
+                      <div class="basket-icon">
+                        <span class="bi bi-basket-fill " id="{{food.id}}" ></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            </div>
+
+          <!-- Beverages Tab -->
+          <div class="tab-pane fade" id="menu-drinks" role="tabpanel">
+            <div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+              {% for food in  food_beverages %}
+              <div class="col-lg-6">
+                <div class="menu-item">
+                  <div class="menu-item-image">
+                    <img src="{{food.image.url}}" class="img-fluid" alt="Beverage">
+                    {% if food.special_badge !=  None %}
+                    <div class="special-badge">{{food.special_badge}}</div>
+                    {% endif %}
+                  </div>
+                  <div class="menu-item-content">
+                    <div class="menu-item-header">
+                      <h4>{{food.title}}</h4>
+                      <div class="dietary-tags">
+                        <span class="tag spicy"><i class="bi bi-fire"></i></span>
+                      </div>
+                    </div>
+                    <p>{{food.description}}</p>
+                    <div class="menu-item-footer" style="display: flex;justify-content: space-between;">
+                      <div>
+                        <span style="display: inline-block;" class="price">${{food.price_after_discount}}</span>
+                      </div>
+                      <div class="basket-icon">
+                        <span class="bi bi-basket-fill " id="{{food.id}}" ></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+            </div>
+
+
+      </div>
+
+    </section><!-- /Menu Section -->
+  </main>
+
+  {%  csrf_token %}
+  <script>
+      const csrf_token = document.querySelector("[name='csrfmiddlewaretoken']").value
+      function make_request_for_basket (basket){
+        fetch("{{url_of_add_in_basket}}",
+          {
+            method:"POST",
+            headers:{
+              "Content-Type":"application/json",
+              "X-CSRFToken":csrf_token,
+            },
+            body:JSON.stringify({food_id:basket.id})
+          }
+        ).then(respone=>respone.json()).then(data=>{
+          if (data.url){
+            location.href = data.url
+          }
+        })
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+      let n =5
+      const food_starters = JSON.parse('{{ food_starters_json|safe }}');
+      const food_main_courses = JSON.parse('{{ food_main_courses_json|safe }}');
+      const food_desserts = JSON.parse('{{ food_desserts_json|safe }}');
+      const food_beverages = JSON.parse('{{ food_beverages_json|safe }}');
+
+      let lastFoodActive = Array.from(document.getElementsByClassName("tab-pane fade show active")[0].getElementsByClassName("col-lg-6"))
+      lastFoodActive = lastFoodActive[lastFoodActive.length-1]
+      
+      let the_food;
+      const observer = new  IntersectionObserver((entires)=>{
+
+        entires.forEach(entry=>{
+          if (entry.isIntersecting ){
+
+            let tab = document.getElementsByClassName("tab-pane fade active show")[0]
+            let in_tab = tab.getElementsByClassName("row gy-4 aos-init aos-animate")[0]
+
+            if (tab.id == "menu-starters"){
+              the_food = food_starters.slice(n,n+5)
+            }
+            if (tab.id == "menu-drinks"){
+              the_food = food_beverages.slice(n,n+5)
+            }
+            if (tab.id == "menu-mains"){
+              the_food = food_main_courses.slice(n,n+5)
+            }
+            if (tab.id == "menu-desserts"){
+              the_food = food_desserts.slice(n,n+5)
+            }
+            
+              Array.from(the_food).forEach(
+                f=>{
+                  in_tab.insertAdjacentHTML ("beforeend",`
+                  <div class="col-lg-6">
+                  <div class="menu-item">
+                    <div class="menu-item-image">
+                      <img src="/media/${f.fields.image}" class="img-fluid" alt="Starter">
+                      ${f.fields.special_badge !=  null?`<div class='special-badge'> ${f.fields.special_badge} </div>`:"" }
+                    </div>
+                    <div class="menu-item-content">
+                      <div class="menu-item-header">
+                        <h4>${f.fields.title}</h4>
+                        <div class="dietary-tags">
+                          <span class="tag ${f.fields.tag}"><i class="bi bi-fire"></i></span>
+                        </div>
+                      </div>
+                      <p>${f.fields.description}</p>
+                      <div class="menu-item-footer" style="display: flex;justify-content: space-between;">
+                        <div>
+                          <span style="display: inline-block;" class="price">${parseFloat(f.fields.price_before_discount)-(parseFloat(f.fields.price_before_discount) * (f.fields.discount/100))}</span>
+                        </div>
+                        <div class="basket-icon">
+                          <span class="bi bi-basket-fill " id="${f.pk}" ></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  `
+                  )
+                  let basket = document.getElementById(f.pk)
+                  basket.addEventListener("click",()=>{make_request_for_basket(basket)})
+                }
+              )
+              let lastFoodActive = Array.from(document.getElementsByClassName("tab-pane fade show active")[0].getElementsByClassName("col-lg-6"))
+              lastFoodActive = lastFoodActive[lastFoodActive.length-1]
+
+              requestAnimationFrame(() => {
+                observer.observe(lastFoodActive);
+                });
+              n+=5
+            
+          }
+          })
+        })
+        requestAnimationFrame(() => {
+          observer.observe(lastFoodActive);
+          });
+        
+
+
+        let baskets =  document.querySelectorAll(".bi.bi-basket-fill")
+        Array.from(baskets).forEach(
+          basket=>{
+            basket.addEventListener("click",()=>{make_request_for_basket(basket)})
+          }
+        )
+        let buys_packges_buttons = Array.from(document.getElementsByClassName("buy-package"))
+        console.log(buys_packges_buttons)
+        buys_packges_buttons.forEach(
+          button=>{
+            button.addEventListener("click",()=>{
+            fetch("{{request.scheme}}://{{request.get_host}}{% url  'pages:book_package' %}",
+          {
+            method:"POST",
+            headers:{
+              "Content-Type":"application/json",
+              "X-CSRFToken":csrf_token,
+            },
+            body:JSON.stringify({package_id:button.id})
+          }
+          ).then(res=>res.json()).then(data=>{
+            location.href = data.url
+          })
+          })
+          }
+        )
+        });
+  
+  </script>
+{% endblock %}

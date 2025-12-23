@@ -1,0 +1,86 @@
+{
+    "Open_Daily":"11:00 AM - 10:30 PM",
+    "Location":"Downtown Culinary District",
+    "Opening_Hours":"Mon - Fri: 11:00 AM - 11:00 PM</br>Sat - Sun: 10:00 AM - 12:00 AM",
+    "Reservations":"+1 (401) 555-8792",
+    "Email_Us":"reservations@example.com",
+    "Call_for_Reservations":14015558792,
+    "Address":"847 Broadway Avenue</br>New York, NY 10003",
+    "Recommended_for_booking":"24-48",
+    "note_about_reservations":"Recommended 24-48 hours advance booking",
+    "Max_apacity-Exceptional_Events":200,
+    "Call_Us_Plan_Your_Next_Event":"+1 (555) 123-4567",
+    "Email_Plan_Your_Next_Event":"events@example.com",
+    "Planning_Hours_Your_Next_Event":"Mon-Fri 9AM-6PM",
+    "Events_Hosted":"500+",
+    "Max_Capacity":200,
+    "Restaurant_interior_img":"assets/img/restaurant/showcase-4.webp",
+    "map":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.684949335945!2d-73.98658242357565!3d40.75853057126168!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ1JzMwLjciTiA3M8KwNTknMDcuNyJX!5e0!3m2!1sen!2sus!4v1654321234567!5m2!1sen!2sus",
+    "Email_contact":"author@gamil.com",
+    "phone":"+1 (555) 123-4567",
+    "Testimonials":[
+    {
+        "name":"Sophia Martinez",
+        "work":"Creative Director",
+        "icon":"building",
+        "text":"Leveraging cutting-edge design principles to create immersive brand experiences that resonate with modern audiences",
+        "image":"assets/img/person/person-m-6.webp",
+        "fetured":""
+    },
+    {
+        "name":"Alexander Wright",
+        "work":"CEO & Founder",
+        "icon":"buildings",
+        "text":"Revolutionary solutions have transformed our business landscape, driving unprecedented growth and market leadership position.",
+        "image":"assets/img/person/person-m-5.webp",
+        "fetured":"featured"
+        
+    }],
+    "trasport_items":[
+    {
+        "name":"Valet Parking",
+        "description":"Available daily from 5:00 PM",
+        "icon":"train-front"
+    },
+    {
+        "name":"Subway",
+        "description":"Union Square Station (4, 5, 6, L, N, Q, R, W)",
+        "icon":"p-square"
+    }],
+    "Operating_Hours_clearly":[
+        {
+            "day":"Tuesday - Thursday",
+            "time":"5:00 PM - 10:00 PM"
+        },
+        {
+            "day":"Friday - Saturday",
+            "time":"5:00 PM - 11:00 PM"
+        },
+        {
+            "day":"Sunday",
+            "time":"4:00 PM - 9:00 PM"
+        },
+        {
+            "day":"monday",
+            "time":"Closed"
+        }
+
+    ],
+    "Event_Space_img":"assets/img/restaurant/event-2.webp",
+    "social_links":[
+        {
+            "icon":"facebook",
+            "link":"https://facebook.com"
+        },
+        {
+            "icon":"instagram",
+            "link":"https://instagram.com"
+        },
+        {
+            "icon":"linkedin",
+            "link":"https://linkedin.com"
+        }
+    ]
+    
+
+}

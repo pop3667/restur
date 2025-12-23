@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} page not found {% endblock %}
+
+{% block main %}
+    <h1>Page Not Found</h1>
+    <p>you can to any link or go to <a href="{% url 'pages:home' %}">home</a></p>
+    <style>
+        main{
+            width: 80%;
+            justify-self: center;
+            margin: 100px 60px;
+        }
+    </style>
+
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+
+{% block  main %}
+<section id="menu" class="menu section" style="margin: 50px;">
+<div class="tab-pane fade show active" id="menu-drinks" role="tabpanel">
+<div class="row gy-4" data-aos="fade-up" data-aos-delay="200">
+    {% for cartitem in foods %}
+    <div class="col-lg-6">
+        <div class="menu-item" id="{{cartitem.id}}" >
+            <div class="menu-item-image">
+            <img src="{{cartitem.food.image.url}}" class="img-fluid" alt="Main Course">
+            {% if food.special_badge !=  None %}
+            <div class="special-badge">{{cartitem.food.special_badge}}</div>
+            {% endif %}
+            </div>
+            <div class="menu-item-content">
+            <div class="menu-item-header">
+                <h4>{{ cartitem.food.title }}</h4>
+                <div class="dietary-tags">
+                <span class="tag {{cartitem.food.tag}}"><i class="bi bi-star-fill"></i></span>
+                </div>
+            </div>
+            <p>{{cartitem.food.description}}</p>
+            <div class="menu-item-footer" style="display: flex;justify-content: space-between;">
+                <div>
+                <span style="display: inline-block;" class="price"><span style="color:rgb(0, 0, 0);font-size:20px">Total</span> ${{cartitem.total_price}}</span>
+                </div>
+                <div class="basket-icon">
+                <span>{{cartitem.quntatiy}} Quntatiy</span>
+                </div>
+                <div class="delete">
+                    <span class="bi bi-trash-fill"  style="color: rgb(161, 0, 0);cursor:pointer"></span>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+        </div>
+
+</div>
+</div>
+
+</section>
+    <div style="justify-self:center;margin:50px">
+    <span  style="justify-self: center;font-size:30px;font-weight:800;color:black"> Total Price  : <span style="color: var(--accent-color);">{{foods.0.cart.total_price}}</span></span>
+    <button id="check out" style="padding: 18px;border-radius:20px;border:none;width:120px;display:block;justify-self: center;background-color:var(--accent-color);color:white;margin:30px">Check out</button>
+    </div>
+{% csrf_token %}
+<script>
+    const csrf_token = document.querySelector("[name='csrfmiddlewaretoken']").value
+    let delete_icon = Array.from(document.getElementsByClassName("bi bi-trash-fill"))
+    delete_icon.forEach(icon=>{
+        icon.addEventListener("click",()=>{
+            let all_div  = icon.parentElement.parentElement.parentElement.parentElement
+            let cartitem_id = +all_div.id
+            fetch("{{href_remove_from_cart}}",{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json",
+                    "X-CSRFToken":csrf_token
+                },
+                body:JSON.stringify({id:cartitem_id})
+                
+            }).then(res=>res.json()).then(data=>{
+                if (data.url){
+                    window.location.href = url
+                }
+            })
+            all_div.remove()
+            all_div.parentElement.animate()
+        })
+    })
+    let check_out = document.getElementById("check out")
+    check_out.addEventListener("click",()=>{
+        fetch("{{href_of_check_out}}",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "X-CSRFToken":csrf_token
+            },
+        }).then(res=>res.json()).then(data=>{
+            location.href  = data.url
+        })
+    })
+    
+    
+</script>
+{% endblock %}
