@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-t3$*&40$jr-y@cbvz0#!pb-8ydse9!&(e+7n83wy6-%3&fad6c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["judi-photodynamic-india.ngrok-free.dev","127.0.0.1"]
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 
 # Application definition
@@ -138,18 +138,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'yaljmly4@gmail.com'
-EMAIL_HOST_PASSWORD = 'mkbw orrh klbd zofr'
+EMAIL_HOST_USER = 'email'
+EMAIL_HOST_PASSWORD = 'secret key'
 EMAIL_USE_TLS = True
 
 LOGIN_REDIRECT_URL  = "/"
-STRIPE_SECRET_KEY = "sk_test_51RvHSGHNeHcTxE1GNP8gvTvu0UiSfaVtQvZyUEa0Ed5h550cGXBp8zwCPCiRyN6qbEEiS8X917FdgthdGqYkOsYo007gN3Ugqo"
+STRIPE_SECRET_KEY = "sk_test_..."
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://judi-photodynamic-india.ngrok-free.dev",
-]
 
-WEBHOOK_SECRET_KEY =  "whsec_q4k3FYt4PJVuEcMnjiMkWvKT7K8MJjYa"
+
+WEBHOOK_SECRET_KEY =  "whsec_..."
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 REST_FRAMEWORK ={
