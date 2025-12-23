@@ -20,7 +20,7 @@ class Food(models.Model):
     category = models.CharField(choices=[("starters","starters"),("main courses","main courses"),("desserts","desserts"),("beverages","beverages")])
     @property
     def price_after_discount(self):
-        if self.discount == 0:
+        if self.discount != 0:
             return round(float(self.price_before_discount)-( float(self.price_before_discount) * (self.discount/100)),2)
         return  decimal.Decimal(str(self.price_before_discount))
     class Meta:
