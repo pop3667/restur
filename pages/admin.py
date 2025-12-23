@@ -19,4 +19,3 @@ admin.site.register(models.BookPackage)
 admin.site.register(models.Event)
 
 
-"https://www.youtube.com/watch?v=jsZoR1kkq6s"
