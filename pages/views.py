@@ -31,7 +31,7 @@ def home(request):
             and reservation date and time is {request.POST.get("date")} ,
             time is {request.POST.get("time")}
             '''
-            send_mail(subject,message,f"from {request.POST.get("full-name")} ",["yaljmly4@gmail.com"])
+            send_mail(subject,message,f"from {request.POST.get("full-name")} ",["email"])
             models.TableBooking.objects.create(
                 user = request.user,
                 full_name = request.POST.get("full-name"),
@@ -53,7 +53,7 @@ def home(request):
             and reservation date  {request.POST.get("date")} ,
             message is {request.POST.get("message")}
             '''
-            send_mail(subject,message,f"from {request.POST.get("full-name")} ",["yaljmly4@gmail.com"])
+            send_mail(subject,message,f"from {request.POST.get("full-name")} ",["email"])
         elif request.POST.get("task") == 'contact':
             subject  = f"A request from Savora is contact "
             message = f'''
@@ -62,7 +62,7 @@ def home(request):
             his subject is {request.POST.get("subject")} ,
             message is {request.POST.get("message")}
             '''
-            send_mail(subject,message,f"from {request.POST.get("full-name")} ",["yaljmly4@gmail.com"])
+            send_mail(subject,message,f"from {request.POST.get("full-name")} ",["email"])
 
 
 
@@ -74,7 +74,7 @@ def home(request):
     food_desserts = Food.objects.filter(category = "desserts")
     food_beverages = Food.objects.filter(category = "beverages")
     gallery_items = models.imageGallery.objects.all()
-    with open(r"D:\work\يحيي\Savora\restur\about_resturant.json", 'r') as f:
+    with open(r"path", 'r') as f:
         about_resturnt = json.load(f) 
 
     
