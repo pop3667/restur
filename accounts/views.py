@@ -14,7 +14,7 @@ def signup(request):
                 phone_number=form.cleaned_data["phone_number"])
             login(request,user=user)
 
-            return redirect("/")
+            return redirect(request.GET.get("next","/"))
     else:
         form = UserCreateForm()
     return render(request,"accounts/signup.html",{"form":form})
